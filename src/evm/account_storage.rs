@@ -2,6 +2,7 @@ use std::collections::{hash_map::Entry::Vacant, HashMap};
 
 use alloy::primitives::{Address, U256};
 use revm::state::AccountInfo;
+use serde::{Deserialize, Serialize};
 use tracing::{debug, warn};
 
 /// Represents an account in the account storage.
@@ -12,7 +13,7 @@ use tracing::{debug, warn};
 /// * `permanent_storage` - The permanent storage of the account.
 /// * `temp_storage` - The temporary storage of the account.
 /// * `mocked` - A boolean flag indicating whether the account is mocked.
-#[derive(Clone, Default, Debug)]
+#[derive(Clone, Default, Debug, Serialize, Deserialize)]
 pub struct Account {
     pub info: AccountInfo,
     pub permanent_storage: HashMap<U256, U256>,
@@ -25,7 +26,7 @@ pub struct StateUpdate {
     pub storage: Option<HashMap<U256, U256>>,
     pub balance: Option<U256>,
 }
-#[derive(Clone, Default, Debug)]
+#[derive(Clone, Default, Debug, Serialize, Deserialize)]
 /// A simpler implementation of CacheDB that can't query a node. It just stores data.
 pub struct AccountStorage {
     accounts: HashMap<Address, Account>,
