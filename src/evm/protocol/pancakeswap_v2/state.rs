@@ -2,6 +2,7 @@ use std::{any::Any, collections::HashMap};
 
 use alloy::primitives::U256;
 use num_bigint::{BigUint, ToBigUint};
+use serde::{Deserialize, Serialize};
 use tycho_common::{
     dto::ProtocolStateDelta,
     models::token::Token,
@@ -22,7 +23,7 @@ use crate::evm::protocol::{
 
 const PANCAKESWAP_V2_FEE: u32 = 25; // 0.25% fee
 
-#[derive(Clone, Debug, PartialEq, Eq)]
+#[derive(Clone, Debug, PartialEq, Eq, Serialize, Deserialize)]
 pub struct PancakeswapV2State {
     pub reserve0: U256,
     pub reserve1: U256,

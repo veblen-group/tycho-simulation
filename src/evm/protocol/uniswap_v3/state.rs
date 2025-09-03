@@ -3,6 +3,7 @@ use std::{any::Any, collections::HashMap};
 use alloy::primitives::{Sign, I256, U256};
 use num_bigint::BigUint;
 use num_traits::Zero;
+use serde::{Deserialize, Serialize};
 use tracing::trace;
 use tycho_common::{
     dto::ProtocolStateDelta,
@@ -31,7 +32,7 @@ use crate::evm::protocol::{
     },
 };
 
-#[derive(Clone, Debug, PartialEq, Eq)]
+#[derive(Clone, Debug, PartialEq, Eq, Serialize, Deserialize)]
 pub struct UniswapV3State {
     liquidity: u128,
     sqrt_price: U256,

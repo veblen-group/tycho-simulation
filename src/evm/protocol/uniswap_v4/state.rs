@@ -4,6 +4,7 @@ use alloy::primitives::{Address, Sign, I256, U256};
 use num_bigint::BigUint;
 use num_traits::{ToPrimitive, Zero};
 use revm::primitives::I128;
+use serde::{Deserialize, Serialize};
 use tracing::trace;
 use tycho_client::feed::BlockHeader;
 use tycho_common::{
@@ -66,7 +67,7 @@ impl PartialEq for UniswapV4State {
 
 impl Eq for UniswapV4State {}
 
-#[derive(Clone, Debug, PartialEq, Eq)]
+#[derive(Clone, Debug, PartialEq, Eq, Serialize, Deserialize)]
 pub struct UniswapV4Fees {
     // Protocol fees in the zero for one direction
     pub zero_for_one: u32,

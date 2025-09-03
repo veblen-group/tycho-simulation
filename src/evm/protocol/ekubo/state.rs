@@ -9,6 +9,7 @@ use evm_ekubo_sdk::{
     quoting::types::{NodeKey, TokenAmount},
 };
 use num_bigint::BigUint;
+use serde::{Deserialize, Serialize};
 use tycho_common::{
     dto::ProtocolStateDelta,
     models::token::Token,
@@ -25,7 +26,7 @@ use super::pool::{
 use crate::evm::protocol::{ekubo::pool::mev_resist::MevResistPool, u256_num::u256_to_f64};
 
 #[enum_delegate::implement(EkuboPool)]
-#[derive(Debug, Clone, PartialEq, Eq)]
+#[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
 pub enum EkuboState {
     Base(BasePool),
     FullRange(FullRangePool),

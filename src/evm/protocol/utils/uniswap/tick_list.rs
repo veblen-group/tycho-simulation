@@ -1,10 +1,11 @@
 use std::cmp;
 
 use alloy::primitives::U256;
+use serde::{Deserialize, Serialize};
 
 use super::tick_math::{get_sqrt_ratio_at_tick, MAX_TICK, MIN_TICK};
 
-#[derive(Copy, Clone, Debug, PartialEq, Eq)]
+#[derive(Copy, Clone, Debug, PartialEq, Eq, Serialize, Deserialize)]
 pub struct TickInfo {
     pub(crate) index: i32,
     pub(crate) net_liquidity: i128,
@@ -26,12 +27,12 @@ impl PartialOrd for TickInfo {
     }
 }
 
-#[derive(Debug)]
+#[derive(Debug, Serialize, Deserialize)]
 pub(crate) struct TickListError {
     pub(crate) kind: TickListErrorKind,
 }
 
-#[derive(Debug, PartialEq)]
+#[derive(Debug, PartialEq, Serialize, Deserialize)]
 pub(crate) enum TickListErrorKind {
     NotFound,
     BelowSmallest,
@@ -39,7 +40,7 @@ pub(crate) enum TickListErrorKind {
     TicksExeeded,
 }
 
-#[derive(Clone, Debug, PartialEq, Eq)]
+#[derive(Clone, Debug, PartialEq, Eq, Serialize, Deserialize)]
 pub(crate) struct TickList {
     tick_spacing: u16,
     ticks: Vec<TickInfo>,
