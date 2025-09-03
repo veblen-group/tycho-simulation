@@ -2987,12 +2987,13 @@ dependencies = [
 
 [[package]]
 name = "evm_ekubo_sdk"
-version = "0.6.2"
+version = "0.6.4"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "3718a9dd4f14da3c485e7aa4c8e9c856b4bb98d9a18059636f3315d70f2c7c1f"
+checksum = "042cb3a13176fc0631489038bb0cebe9496ac15d2dac2b055d520fd56c3f6d9a"
 dependencies = [
  "insta",
  "num-traits",
+ "serde",
  "uint 0.10.0",
 ]
 
