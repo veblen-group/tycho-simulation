@@ -9,6 +9,7 @@ use revm::{
     state::{AccountInfo, Bytecode},
     DatabaseRef,
 };
+use serde::{Deserialize, Serialize};
 use thiserror::Error;
 use tracing::{debug, error, instrument, warn};
 use tycho_client::feed::BlockHeader;
@@ -43,7 +44,7 @@ pub enum PreCachedDBError {
 
 impl DBErrorMarker for PreCachedDBError {}
 
-#[derive(Clone, Debug)]
+#[derive(Clone, Debug, Serialize, Deserialize)]
 pub struct PreCachedDBInner {
     /// Storage for accounts
     accounts: AccountStorage,
@@ -51,7 +52,7 @@ pub struct PreCachedDBInner {
     block: Option<BlockHeader>,
 }
 
-#[derive(Clone, Debug)]
+#[derive(Clone, Debug, Serialize, Deserialize)]
 pub struct PreCachedDB {
     /// Cached inner data
     ///
